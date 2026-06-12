@@ -16,7 +16,7 @@ const stats = [
 
 export function Hero() {
   return (
-    <section className="relative bg-white overflow-hidden min-h-[85vh] flex items-center">
+    <section className="relative bg-white dark:bg-dark overflow-hidden min-h-[85vh] flex items-center">
 
       {/* Soft background blobs using brand colors */}
       <div
@@ -42,10 +42,9 @@ export function Hero() {
             <motion.div
               variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.55 } } }}
             >
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase border"
-                style={{ background: "#eef2ff", color: "#4f46e5", borderColor: "#c7d2fe" }}
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase border bg-tag-bg border-border-soft text-primary"
               >
-                <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "#4f46e5" }} />
+                <span className="w-1.5 h-1.5 rounded-full animate-pulse bg-primary" />
                 Top HR Platform in India
               </span>
             </motion.div>
@@ -55,7 +54,7 @@ export function Hero() {
               variants={{ hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0, transition: { duration: 0.65 } } }}
               className="space-y-3"
             >
-              <h1 className="text-[2.75rem] sm:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-extrabold leading-[1.1] tracking-tight text-[#1e1b4b]">
+              <h1 className="text-[2.75rem] sm:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-extrabold leading-[1.1] tracking-tight text-text-primary">
                 Find the perfect job
                 <br />
                 <span className="relative inline-block">
@@ -78,7 +77,7 @@ export function Hero() {
                   </svg>
                 </span>
               </h1>
-              <p className="text-base sm:text-lg text-[#6b7280] max-w-md leading-relaxed font-medium">
+              <p className="text-base sm:text-lg text-text-muted max-w-md leading-relaxed font-medium">
                 Browse thousands of curated opportunities from top companies and land your dream role — faster than ever.
               </p>
             </motion.div>
@@ -88,7 +87,7 @@ export function Hero() {
               variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.55, delay: 0.1 } } }}
               className="flex flex-wrap gap-4"
             >
-              <Link href="/apply">
+              <Link href="#hire">
                 <span
                   className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-white text-sm font-bold shadow-lg transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]"
                   style={{
@@ -101,8 +100,7 @@ export function Hero() {
                 </span>
               </Link>
               <Link href="#contact">
-                <span className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-bold border-2 transition-all duration-200 hover:bg-indigo-50"
-                  style={{ color: "#4f46e5", borderColor: "#4f46e5" }}
+                <span className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-bold border-2 transition-all duration-200 hover:bg-indigo-50 dark:hover:bg-indigo-950/40 text-primary border-primary"
                 >
                   Contact Us
                 </span>
@@ -116,12 +114,12 @@ export function Hero() {
             >
               {stats.map((s) => (
                 <div key={s.label} className="flex items-center gap-2">
-                  <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: "#eef2ff" }}>
-                    <s.icon className="w-4 h-4" style={{ color: "#4f46e5" }} />
+                  <div className="w-9 h-9 rounded-lg flex items-center justify-center bg-tag-bg">
+                    <s.icon className="w-4 h-4 text-primary" />
                   </div>
                   <div>
-                    <div className="text-[#1e1b4b] font-extrabold text-base leading-none">{s.value}</div>
-                    <div className="text-[#9ca3af] text-xs mt-0.5">{s.label}</div>
+                    <div className="text-text-primary font-extrabold text-base leading-none">{s.value}</div>
+                    <div className="text-text-subtle text-xs mt-0.5">{s.label}</div>
                   </div>
                 </div>
               ))}
@@ -139,17 +137,17 @@ export function Hero() {
           >
             {/* Decorative background card */}
             <div
-              className="absolute -top-6 -right-6 w-full h-full rounded-3xl"
-              style={{ background: "linear-gradient(135deg, #eef2ff, #f0fdfe)", zIndex: 0 }}
+              className="absolute -top-6 -right-6 w-full h-full rounded-3xl bg-linear-to-br from-[#eef2ff] to-[#f0fdfe] dark:from-dark-2 dark:to-[#121124]"
+              style={{ zIndex: 0 }}
             />
             {/* Accent border card */}
             <div
-              className="absolute -bottom-4 -left-4 w-full h-full rounded-3xl border-2"
-              style={{ borderColor: "#c7d2fe", zIndex: 0 }}
+              className="absolute -bottom-4 -left-4 w-full h-full rounded-3xl border-2 border-[#c7d2fe] dark:border-white/10"
+              style={{ zIndex: 0 }}
             />
 
             {/* Main image */}
-            <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl aspect-[4/3] lg:aspect-auto lg:h-[520px]">
+            <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl aspect-4/3 lg:aspect-auto lg:h-[520px]">
               <Image
                 src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=900&q=85&auto=format&fit=crop"
                 alt="Team of professionals collaborating"
@@ -158,7 +156,7 @@ export function Hero() {
                 priority
               />
               {/* Subtle gradient overlay at bottom */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1e1b4b]/30 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-[#1e1b4b]/30 via-transparent to-transparent" />
             </div>
 
             {/* Floating badge — top left */}
@@ -166,14 +164,13 @@ export function Hero() {
               initial={{ opacity: 0, scale: 0.75, y: 8 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ delay: 0.9, duration: 0.45, ease: "easeOut" }}
-              className="absolute -left-5 top-10 z-20 bg-white rounded-2xl px-4 py-3 shadow-xl flex items-center gap-3"
-              style={{ border: "1.5px solid #e5e7eb" }}
+              className="absolute -left-5 top-10 z-20 bg-white dark:bg-dark-2 rounded-2xl px-4 py-3 shadow-xl flex items-center gap-3 border border-border"
             >
-              <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: "#eef2ff" }}>
-                <Briefcase className="w-4 h-4" style={{ color: "#4f46e5" }} />
+              <div className="w-9 h-9 rounded-xl flex items-center justify-center bg-tag-bg">
+                <Briefcase className="w-4 h-4 text-primary" />
               </div>
               <div>
-                <div className="text-[#1e1b4b] text-sm font-bold">100+ Job Roles</div>
+                <div className="text-text-primary text-sm font-bold">100+ Job Roles</div>
               </div>
             </motion.div>
 
@@ -182,15 +179,14 @@ export function Hero() {
               initial={{ opacity: 0, scale: 0.75, y: 8 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ delay: 1.1, duration: 0.45, ease: "easeOut" }}
-              className="absolute -right-4 bottom-10 z-20 bg-white rounded-2xl px-4 py-3 shadow-xl flex items-center gap-3"
-              style={{ border: "1.5px solid #e5e7eb" }}
+              className="absolute -right-4 bottom-10 z-20 bg-white dark:bg-dark-2 rounded-2xl px-4 py-3 shadow-xl flex items-center gap-3 border border-border"
             >
-              <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: "#f0fdfe" }}>
-                <Users className="w-4 h-4" style={{ color: "#06b6d4" }} />
+              <div className="w-9 h-9 rounded-xl flex items-center justify-center bg-tag-bg">
+                <Users className="w-4 h-4 text-secondary" />
               </div>
               <div>
-                <div className="text-[#1e1b4b] text-sm font-bold">500+ Hired</div>
-                <div className="text-[#9ca3af] text-xs">This month</div>
+                <div className="text-text-primary text-sm font-bold">500+ Hired</div>
+                <div className="text-text-subtle text-xs">This month</div>
               </div>
             </motion.div>
           </motion.div>

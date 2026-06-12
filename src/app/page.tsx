@@ -4,7 +4,8 @@ import React from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@src/components/page/home/Hero";
-import { AboutUs } from "@src/components/page/home/AboutUs";
+import { Services } from "@src/components/page/home/Services";
+import { WhoWeAre } from "@src/components/page/home/WhoWeAre";
 import { Testimonials } from "@/components/page/home/Testimonials";
 import { Hire } from "@/components/page/home/Hire";
 import { ContactUs } from "@/components/page/home/ContactUs";
@@ -16,7 +17,8 @@ export default function Page() {
 
       <main className="grow">
         <Hero />
-        <AboutUs />
+        <WhoWeAre />
+        <Services />
         <Hire />
         <Testimonials />
         <ContactUs />

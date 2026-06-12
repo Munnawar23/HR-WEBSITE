@@ -33,7 +33,7 @@ export function ContactUs() {
   const chars = ringText.split("");
 
   return (
-    <section id="contact" className="py-24 lg:py-36 bg-light relative overflow-hidden">
+    <section id="contact" className="py-20 lg:py-28 bg-light relative overflow-hidden">
 
       {/* Subtle dot grid */}
       <div
@@ -56,10 +56,9 @@ export function ContactUs() {
           className="flex items-center gap-4 mb-8"
         >
           <span
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase border"
-            style={{ background: "#eef2ff", color: "#4f46e5", borderColor: "#c7d2fe" }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase border bg-tag-bg border-border-soft text-primary"
           >
-            <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "#4f46e5" }} />
+            <span className="w-1.5 h-1.5 rounded-full animate-pulse bg-primary" />
             Contact Us
           </span>
         </motion.div>
@@ -76,7 +75,8 @@ export function ContactUs() {
             className="flex flex-col gap-6"
           >
             <h2 className="text-5xl sm:text-6xl lg:text-[4rem] font-extrabold text-text-primary leading-[1.05] tracking-tight">
-              Let's grow<br />
+              Let's grow
+              <br />
               your{" "}
               <span className="relative inline-block">
                 brand.
@@ -87,7 +87,7 @@ export function ContactUs() {
               </span>
             </h2>
 
-            <p className="text-base text-text-muted leading-relaxed max-w-md">
+            <p className="text-base sm:text-lg text-text-muted leading-relaxed max-w-md">
               We craft campaigns, build employer brands, and put you in front of the right audience. Ready to talk?
             </p>
 

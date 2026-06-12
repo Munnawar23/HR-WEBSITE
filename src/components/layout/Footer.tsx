@@ -59,7 +59,7 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer id="footer" className="relative overflow-hidden bg-gradient-to-b from-dark to-dark-2 border-t border-white/5">
+    <footer id="footer" className="relative overflow-hidden bg-linear-to-b from-dark to-dark-2 border-t border-white/5">
       {/* Background ambient glow */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-indigo-500/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl pointer-events-none" />
@@ -77,7 +77,7 @@ export function Footer() {
           >
             {/* Logo */}
             <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/30">
+              <div className="w-9 h-9 rounded-xl bg-linear-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/30">
                 <Zap className="w-4 h-4 text-white fill-white" strokeWidth={2.5} />
               </div>
               <span className="font-extrabold text-xl text-white tracking-tight">

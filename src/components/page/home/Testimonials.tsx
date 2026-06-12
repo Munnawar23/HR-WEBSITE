@@ -57,7 +57,7 @@ const feedbackList = [
 
 export function Testimonials() {
   return (
-    <section id="testimonials" className="py-16 lg:py-0 bg-white relative lg:h-screen lg:flex lg:items-center">
+    <section id="testimonials" className="py-20 lg:py-28 bg-white dark:bg-dark relative overflow-hidden">
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 lg:h-[80vh] lg:max-h-[700px] items-stretch">
@@ -72,18 +72,17 @@ export function Testimonials() {
               className="flex flex-col gap-5"
             >
               <span
-                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase border w-fit"
-                style={{ background: "#eef2ff", color: "#4f46e5", borderColor: "#c7d2fe" }}
+                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase border w-fit bg-tag-bg border-border-soft text-primary"
               >
                 <span className="w-1.5 h-1.5 rounded-full animate-pulse bg-primary" />
                 Wall of Fame
               </span>
 
-              <h2 className="text-4xl sm:text-5xl font-extrabold text-text-primary leading-[1.1] tracking-tight">
+              <h2 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-extrabold text-text-primary leading-[1.1] tracking-tight">
                 Stories of success, <span className="text-primary">driven by results.</span>
               </h2>
 
-              <p className="text-base text-text-muted leading-relaxed">
+              <p className="text-base sm:text-lg text-text-muted leading-relaxed">
                 See how students and freshers started their careers simply by filling out our application form and getting matched with top companies.
               </p>
             </motion.div>
@@ -94,7 +93,7 @@ export function Testimonials() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2, duration: 0.5 }}
-              className="mt-4 bg-slate-50 border border-slate-100 rounded-3xl p-6 flex items-center justify-between gap-6"
+              className="mt-4 bg-slate-50 dark:bg-dark-2 border border-slate-100 dark:border-white/5 rounded-3xl p-6 flex items-center justify-between gap-6"
             >
               <div className="flex flex-col gap-1">
                 <span className="text-3xl font-black text-text-primary">4.9</span>
@@ -105,7 +104,7 @@ export function Testimonials() {
                 </div>
                 <span className="text-xs text-text-subtle font-semibold mt-1">Average Partner Rating</span>
               </div>
-              <div className="h-12 w-px bg-slate-200" />
+              <div className="h-12 w-px bg-slate-200 dark:bg-white/10" />
               <div className="flex flex-col gap-1">
                 <span className="text-3xl font-black text-primary">2.4k+</span>
                 <span className="text-xs text-text-subtle font-semibold">Active Placements</span>
@@ -137,7 +136,7 @@ export function Testimonials() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6, delay: idx * 0.1, ease: "easeOut" }}
-                className="group relative bg-white border border-slate-100 hover:border-slate-200/80 p-8 rounded-3xl transition-all duration-300 hover:shadow-md"
+                className="group relative bg-white dark:bg-dark-2 border border-slate-100 dark:border-white/5 hover:border-slate-200/80 dark:hover:border-white/10 p-8 rounded-3xl transition-all duration-300 hover:shadow-md"
               >
                 {/* Visual marker inside card */}
                 <div 
@@ -148,7 +147,7 @@ export function Testimonials() {
                 {/* Quote Icon */}
                 <div className="flex items-center justify-between mb-6">
                   <div 
-                    className="w-12 h-12 rounded-2xl flex items-center justify-center bg-slate-50 group-hover:bg-indigo-50/50 transition-colors duration-300"
+                    className="w-12 h-12 rounded-2xl flex items-center justify-center bg-slate-50 dark:bg-dark/50 group-hover:bg-indigo-50/50 dark:group-hover:bg-indigo-950/20 transition-colors duration-300"
                   >
                     <Quote className="w-5 h-5 text-indigo-400" />
                   </div>
@@ -160,7 +159,7 @@ export function Testimonials() {
                 </p>
 
                 {/* Author Info block */}
-                <div className="flex items-center justify-between gap-4 pt-6 border-t border-slate-50">
+                <div className="flex items-center justify-between gap-4 pt-6 border-t border-slate-50 dark:border-white/5">
                   <div className="flex items-center gap-3.5">
                     <div>
                       <h4 className="font-extrabold text-sm text-text-primary group-hover:text-primary transition-colors">

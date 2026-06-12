@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-poppins), sans-serif;
@@ -19,27 +21,61 @@
   --color-dark: #0f0e1a;
   --color-dark-2: #1a1830;
   --color-dark-3: #252342;
-  --color-light: #f8f9ff;
-  --color-white: #ffffff;
+  --color-light: var(--bg-light);
+  --color-white: var(--bg-white);
 
   /* Text Colors */
-  --color-text-primary: #1e1b4b;
-  --color-text-muted: #6b7280;
-  --color-text-subtle: #9ca3af;
+  --color-text-primary: var(--text-primary);
+  --color-text-muted: var(--text-muted);
+  --color-text-subtle: var(--text-subtle);
 
   /* UI Colors */
-  --color-card: #ffffff;
-  --color-border: #e5e7eb;
-  --color-border-soft: #f0f0ff;
-  --color-tag-bg: #eef2ff;
-  --color-surface: #f8faff;
+  --color-card: var(--card-bg);
+  --color-border: var(--border-color);
+  --color-border-soft: var(--border-soft);
+  --color-tag-bg: var(--tag-bg);
+  --color-surface: var(--surface-bg);
 }
 
 :root {
-  --background: var(--color-light);
-  --foreground: var(--color-text-primary);
+  --bg-light: #f8f9ff;
+  --bg-white: #ffffff;
+  --text-primary: #1e1b4b;
+  --text-muted: #6b7280;
+  --text-subtle: #9ca3af;
+  --card-bg: #ffffff;
+  --border-color: #e5e7eb;
+  --border-soft: #f0f0ff;
+  --tag-bg: #eef2ff;
+  --surface-bg: #f8faff;
+
+  --background: var(--bg-light);
+  --foreground: var(--text-primary);
   --card: var(--color-card);
   --border: var(--color-border);
+}
+
+.dark {
+  --bg-light: #0f0e1a;
+  --bg-white: #121124;
+  --text-primary: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-subtle: #64748b;
+  --card-bg: #1a1830;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-soft: rgba(255, 255, 255, 0.04);
+  --tag-bg: rgba(99, 102, 241, 0.15);
+  --surface-bg: #151426;
+
+  /* Override default tailwind slate colors for dark mode surfaces */
+  --color-slate-50: #151426;
+  --color-slate-100: rgba(255, 255, 255, 0.05);
+  --color-slate-200: rgba(255, 255, 255, 0.08);
+
+  --background: var(--bg-light);
+  --foreground: var(--text-primary);
+  --card: var(--card-bg);
+  --border: var(--border-color);
 }
 
 * {
@@ -47,6 +83,7 @@
 }
 
 html {
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 body {
@@ -55,4 +92,10 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Smooth transitions for key elements to enhance theme toggle experience */
+div, section, header, footer, p, span, h1, h2, h3, h4, h5, h6, a, button {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
