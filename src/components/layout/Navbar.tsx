@@ -75,7 +75,7 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Nav Links */}
-          <div className="hidden md:flex items-center gap-1">
+          <div className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
@@ -101,7 +101,7 @@ export function Navbar() {
           </div>
 
           {/* CTA Buttons + Theme Toggle */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-3">
             <button
               onClick={toggleTheme}
               className="p-2.5 rounded-xl text-text-muted hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-indigo-50/20 transition-colors duration-200"
@@ -122,7 +122,7 @@ export function Navbar() {
           </div>
 
           {/* Mobile Theme Toggle & Menu Toggle */}
-          <div className="flex items-center gap-2 md:hidden">
+          <div className="flex items-center gap-2 lg:hidden">
             <button
               onClick={toggleTheme}
               className="p-2.5 rounded-xl text-text-muted hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-indigo-50/20 transition-colors"
@@ -150,7 +150,7 @@ export function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="md:hidden overflow-hidden bg-white dark:bg-[#121124] border-b border-gray-100 dark:border-white/5 shadow-lg"
+            className="lg:hidden overflow-hidden bg-white dark:bg-[#121124] border-b border-gray-100 dark:border-white/5 shadow-lg"
           >
             <div className="px-4 py-4 space-y-1">
               {navLinks.map((link) => {

@@ -16,7 +16,7 @@ const stats = [
 
 export function Hero() {
   return (
-    <section className="relative bg-white dark:bg-dark overflow-hidden min-h-[85vh] flex items-center">
+    <section className="relative bg-white dark:bg-dark overflow-hidden min-h-[75vh] lg:min-h-[85vh] flex items-center py-8 lg:py-0">
 
       {/* Soft background blobs using brand colors */}
       <div
@@ -28,8 +28,8 @@ export function Hero() {
         style={{ background: "radial-gradient(circle, #06b6d4, transparent 70%)" }}
       />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-16 lg:pt-12 lg:pb-24">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-12 items-center">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-8 lg:pt-12 lg:pb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">
 
           {/* ── LEFT COLUMN ── */}
           <motion.div
