@@ -4,31 +4,55 @@
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-poppins), sans-serif;
 
-  --color-primary: #3d3a8c;
-  --color-primary-hover: #2d2b6b;
+  /* Brand Colors */
+  --color-primary: #4f46e5;
+  --color-primary-hover: #4338ca;
+  --color-primary-light: #818cf8;
 
-  --color-secondary: #7ec832;
-  --color-secondary-hover: #6ab025;
+  --color-secondary: #06b6d4;
+  --color-secondary-hover: #0891b2;
 
-  --color-dark: #1e1b4b;
-  --color-light: #f9f9fb;
+  --color-accent: #f59e0b;
+  --color-accent-hover: #d97706;
 
+  /* Surface Colors */
+  --color-dark: #0f0e1a;
+  --color-dark-2: #1a1830;
+  --color-dark-3: #252342;
+  --color-light: #f8f9ff;
+  --color-white: #ffffff;
+
+  /* Text Colors */
+  --color-text-primary: #1e1b4b;
+  --color-text-muted: #6b7280;
+  --color-text-subtle: #9ca3af;
+
+  /* UI Colors */
   --color-card: #ffffff;
-  --color-border: #e0dff5;
-
-  --color-text-muted: #9896b8;
-  --color-tag-bg: #f0effe;
+  --color-border: #e5e7eb;
+  --color-border-soft: #f0f0ff;
+  --color-tag-bg: #eef2ff;
+  --color-surface: #f8faff;
 }
 
 :root {
   --background: var(--color-light);
-  --foreground: var(--color-dark);
+  --foreground: var(--color-text-primary);
   --card: var(--color-card);
   --border: var(--color-border);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
 }
 
 body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

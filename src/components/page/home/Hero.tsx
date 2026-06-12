@@ -1,119 +1,203 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@src/components/common/Button";
-import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { ArrowRight, Briefcase, MapPin, Users } from "lucide-react";
+
+
+
+const stats = [
+  { icon: Briefcase, value: "100+", label: "Job Roles" },
+  { icon: MapPin, value: "50+", label: "Cities" },
+  { icon: Users, value: "5K+", label: "Candidates" },
+];
 
 export function Hero() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
-  };
-
   return (
-    <section className="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center"
-        >
-          {/* Hero Text */}
-          <div className="lg:col-span-7 space-y-8 text-center lg:text-left">
-            <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-tag-bg border border-border">
-              <span className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
-              <span className="text-xs font-semibold uppercase tracking-wider text-primary">
-                The future of HR is here
+    <section className="relative bg-white overflow-hidden min-h-[85vh] flex items-center">
+
+      {/* Soft background blobs using brand colors */}
+      <div
+        className="absolute top-[-120px] right-[-120px] w-[520px] h-[520px] rounded-full opacity-[0.07] pointer-events-none"
+        style={{ background: "radial-gradient(circle, #4f46e5, transparent 70%)" }}
+      />
+      <div
+        className="absolute bottom-[-80px] left-[-80px] w-[380px] h-[380px] rounded-full opacity-[0.05] pointer-events-none"
+        style={{ background: "radial-gradient(circle, #06b6d4, transparent 70%)" }}
+      />
+
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-16 lg:pt-12 lg:pb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-12 items-center">
+
+          {/* ── LEFT COLUMN ── */}
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.14 } } }}
+            className="flex flex-col gap-8"
+          >
+            {/* Badge */}
+            <motion.div
+              variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.55 } } }}
+            >
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase border"
+                style={{ background: "#eef2ff", color: "#4f46e5", borderColor: "#c7d2fe" }}
+              >
+                <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "#4f46e5" }} />
+                Top HR Platform in India
               </span>
             </motion.div>
-            <motion.h1 variants={itemVariants} className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-display leading-[1.15] text-primary tracking-tight">
-              Manage your people, payroll & culture in <span className="text-secondary">one place.</span>
-            </motion.h1>
-            <motion.p variants={itemVariants} className="text-base sm:text-lg lg:text-xl text-text-muted max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
-              Streamline operations, automate onboarding, manage talent, and delight your team with our all-in-one HR platform built for modern workspaces.
-            </motion.p>
-            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Link href="/signup">
-                <Button variant="primary" size="lg" className="w-full sm:w-auto" rightIcon={<ArrowRight className="w-4 h-4" />}>
-                  Start Free Trial
-                </Button>
+
+            {/* Heading */}
+            <motion.div
+              variants={{ hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0, transition: { duration: 0.65 } } }}
+              className="space-y-3"
+            >
+              <h1 className="text-[2.75rem] sm:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-extrabold leading-[1.1] tracking-tight text-[#1e1b4b]">
+                Find the perfect job
+                <br />
+                <span className="relative inline-block">
+                  <span style={{ color: "#4f46e5" }}>for your skills</span>
+                  {/* Brush underline */}
+                  <svg
+                    className="absolute -bottom-2 left-0 w-full"
+                    viewBox="0 0 360 14"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    preserveAspectRatio="none"
+                  >
+                    <path
+                      d="M4 10C70 5 180 3 356 6"
+                      stroke="#06b6d4"
+                      strokeWidth="8"
+                      strokeLinecap="round"
+                      opacity="0.7"
+                    />
+                  </svg>
+                </span>
+              </h1>
+              <p className="text-base sm:text-lg text-[#6b7280] max-w-md leading-relaxed font-medium">
+                Browse thousands of curated opportunities from top companies and land your dream role — faster than ever.
+              </p>
+            </motion.div>
+
+            {/* CTA Buttons */}
+            <motion.div
+              variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.55, delay: 0.1 } } }}
+              className="flex flex-wrap gap-4"
+            >
+              <Link href="/apply">
+                <span
+                  className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-white text-sm font-bold shadow-lg transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]"
+                  style={{
+                    background: "linear-gradient(135deg, #4f46e5, #7c3aed)",
+                    boxShadow: "0 8px 24px rgba(79,70,229,0.28)",
+                  }}
+                >
+                  Apply for Role
+                  <ArrowRight className="w-4 h-4" />
+                </span>
               </Link>
-              <Link href="/solutions">
-                <Button variant="outline" size="lg" className="w-full sm:w-auto">
-                  Book Demo
-                </Button>
+              <Link href="#contact">
+                <span className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-bold border-2 transition-all duration-200 hover:bg-indigo-50"
+                  style={{ color: "#4f46e5", borderColor: "#4f46e5" }}
+                >
+                  Contact Us
+                </span>
               </Link>
             </motion.div>
-          </div>
 
-          {/* Hero Interactive Widget */}
-          <motion.div
-            variants={{
-              hidden: { opacity: 0, x: 50 },
-              visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" as const, delay: 0.3 } },
-            }}
-            className="lg:col-span-5 relative"
-          >
-            <div className="relative mx-auto max-w-md lg:max-w-none p-8 rounded-3xl bg-white border border-border shadow-2xl transition-all duration-300">
-              <div className="flex justify-between items-center pb-6 border-b border-border">
-                <div>
-                  <h3 className="font-display font-bold text-lg text-primary">Team Growth</h3>
-                  <p className="text-xs text-text-muted font-medium">Active members this month</p>
-                </div>
-                <span className="text-xs font-bold text-secondary bg-secondary/10 px-2.5 py-1 rounded-full">
-                  +18.4%
-                </span>
-              </div>
-              
-              <div className="py-6 space-y-4">
-                <div className="flex items-center justify-between p-3 rounded-2xl bg-tag-bg/50 border border-border/40">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-secondary/20 text-secondary font-display font-bold flex items-center justify-center">
-                      JD
-                    </div>
-                    <div>
-                      <h4 className="text-sm font-semibold text-primary">Jane Doe</h4>
-                      <p className="text-xs text-text-muted font-medium">Senior Product Designer</p>
-                    </div>
+            {/* Stats Row */}
+            <motion.div
+              variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.55, delay: 0.2 } } }}
+              className="flex items-center gap-8 pt-2"
+            >
+              {stats.map((s) => (
+                <div key={s.label} className="flex items-center gap-2">
+                  <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: "#eef2ff" }}>
+                    <s.icon className="w-4 h-4" style={{ color: "#4f46e5" }} />
                   </div>
-                  <span className="text-xs font-bold text-green-600 bg-green-50 px-2.5 py-1 rounded-full">Onboarded</span>
-                </div>
-
-                <div className="flex items-center justify-between p-3 rounded-2xl bg-tag-bg/50 border border-border/40">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary font-display font-bold flex items-center justify-center">
-                      JS
-                    </div>
-                    <div>
-                      <h4 className="text-sm font-semibold text-primary">John Smith</h4>
-                      <p className="text-xs text-text-muted font-medium">VP of Engineering</p>
-                    </div>
+                  <div>
+                    <div className="text-[#1e1b4b] font-extrabold text-base leading-none">{s.value}</div>
+                    <div className="text-[#9ca3af] text-xs mt-0.5">{s.label}</div>
                   </div>
-                  <span className="text-xs font-bold text-amber-600 bg-amber-50 px-2.5 py-1 rounded-full">Pending</span>
                 </div>
-              </div>
+              ))}
+            </motion.div>
 
-              <div className="pt-4 border-t border-border flex items-center justify-between">
-                <span className="text-xs text-text-muted font-semibold">Payroll Status</span>
-                <span className="text-xs font-semibold text-primary">Approved &bull; May 2026</span>
-              </div>
-            </div>
+
           </motion.div>
-        </motion.div>
+
+          {/* ── RIGHT COLUMN: Image ── */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.85, ease: "easeOut", delay: 0.1 }}
+            className="relative w-full"
+          >
+            {/* Decorative background card */}
+            <div
+              className="absolute -top-6 -right-6 w-full h-full rounded-3xl"
+              style={{ background: "linear-gradient(135deg, #eef2ff, #f0fdfe)", zIndex: 0 }}
+            />
+            {/* Accent border card */}
+            <div
+              className="absolute -bottom-4 -left-4 w-full h-full rounded-3xl border-2"
+              style={{ borderColor: "#c7d2fe", zIndex: 0 }}
+            />
+
+            {/* Main image */}
+            <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl aspect-[4/3] lg:aspect-auto lg:h-[520px]">
+              <Image
+                src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=900&q=85&auto=format&fit=crop"
+                alt="Team of professionals collaborating"
+                fill
+                className="object-cover"
+                priority
+              />
+              {/* Subtle gradient overlay at bottom */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1e1b4b]/30 via-transparent to-transparent" />
+            </div>
+
+            {/* Floating badge — top left */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.75, y: 8 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ delay: 0.9, duration: 0.45, ease: "easeOut" }}
+              className="absolute -left-5 top-10 z-20 bg-white rounded-2xl px-4 py-3 shadow-xl flex items-center gap-3"
+              style={{ border: "1.5px solid #e5e7eb" }}
+            >
+              <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: "#eef2ff" }}>
+                <Briefcase className="w-4 h-4" style={{ color: "#4f46e5" }} />
+              </div>
+              <div>
+                <div className="text-[#1e1b4b] text-sm font-bold">100+ Job Roles</div>
+              </div>
+            </motion.div>
+
+            {/* Floating badge — bottom right */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.75, y: 8 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ delay: 1.1, duration: 0.45, ease: "easeOut" }}
+              className="absolute -right-4 bottom-10 z-20 bg-white rounded-2xl px-4 py-3 shadow-xl flex items-center gap-3"
+              style={{ border: "1.5px solid #e5e7eb" }}
+            >
+              <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: "#f0fdfe" }}>
+                <Users className="w-4 h-4" style={{ color: "#06b6d4" }} />
+              </div>
+              <div>
+                <div className="text-[#1e1b4b] text-sm font-bold">500+ Hired</div>
+                <div className="text-[#9ca3af] text-xs">This month</div>
+              </div>
+            </motion.div>
+          </motion.div>
+
+        </div>
       </div>
     </section>
   );
 }
+
