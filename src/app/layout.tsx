@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 import "@src/styles/globals.css";
-import { SmoothScroll } from "@/components/layout/SmoothScroll";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -28,9 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
       <body className="antialiased">
-        <SmoothScroll>
-          {children}
-        </SmoothScroll>
+        {children}
       </body>
     </html>
   );
