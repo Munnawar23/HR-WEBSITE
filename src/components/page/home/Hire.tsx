@@ -131,7 +131,7 @@ export function Hire() {
             </div>
 
             {/* CTA Button */}
-            <Link href="#contact" className="relative z-10">
+            <Link href="/hire" className="relative z-10">
               <span className="w-full inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl text-sm font-bold text-white transition-all duration-200 group-hover:scale-[1.02] active:scale-[0.98] shadow-md bg-linear-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700">
                 Request Talent Profile
                 <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />

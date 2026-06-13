@@ -51,6 +51,17 @@ export function Navbar() {
     { name: "Contact Us", href: "#footer" },
   ];
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith("#") && pathname === "/") {
+      e.preventDefault();
+      if (window.__lenis) {
+        window.__lenis.scrollTo(href, { offset: -80 });
+      } else {
+        document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
   return (
     <motion.nav
       initial={{ y: -60, opacity: 0 }}
@@ -78,10 +89,12 @@ export function Navbar() {
           <div className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
+              const resolvedHref = pathname === "/" ? link.href : `/${link.href}`;
               return (
                 <Link
                   key={link.name}
-                  href={link.href}
+                  href={resolvedHref}
+                  onClick={(e) => handleNavClick(e, link.href)}
                   className={`relative px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
                     isActive
                       ? "text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/40"
@@ -109,12 +122,12 @@ export function Navbar() {
             >
               {theme === "light" ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5 text-amber-400" />}
             </button>
-            <Link href="#hire">
+            <Link href="/apply">
               <span className="inline-flex items-center gap-1.5 px-4 py-2 bg-indigo-50 dark:bg-indigo-950/60 hover:bg-indigo-100 dark:hover:bg-indigo-900/60 text-indigo-600 dark:text-indigo-300 text-sm font-semibold rounded-xl transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]">
                 Apply for role
               </span>
             </Link>
-            <Link href="#contact">
+            <Link href="/hire">
               <span className="inline-flex items-center gap-1.5 px-4 py-2 bg-linear-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white text-sm font-semibold rounded-xl shadow-lg shadow-cyan-500/25 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]">
                 Hire a talent
               </span>
@@ -155,11 +168,12 @@ export function Navbar() {
             <div className="px-4 py-4 space-y-1">
               {navLinks.map((link) => {
                 const isActive = pathname === link.href;
+                const resolvedHref = pathname === "/" ? link.href : `/${link.href}`;
                 return (
                   <Link
                     key={link.name}
-                    href={link.href}
-                    onClick={() => setIsOpen(false)}
+                    href={resolvedHref}
+                    onClick={(e) => { handleNavClick(e, link.href); setIsOpen(false); }}
                     className={`block px-4 py-3 rounded-xl text-sm font-semibold transition-colors ${
                       isActive
                         ? "bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400"
@@ -171,12 +185,12 @@ export function Navbar() {
                 );
               })}
               <div className="pt-3 border-t border-gray-100 dark:border-white/5 mt-2 flex flex-col gap-2">
-                <Link href="#hire" onClick={() => setIsOpen(false)}>
+                <Link href="/apply" onClick={() => setIsOpen(false)}>
                   <span className="flex items-center justify-center px-4 py-2.5 bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-300 text-sm font-semibold rounded-xl w-full">
                     Apply for role
                   </span>
                 </Link>
-                <Link href="#contact" onClick={() => setIsOpen(false)}>
+                <Link href="/hire" onClick={() => setIsOpen(false)}>
                   <span className="flex items-center justify-center px-4 py-2.5 bg-linear-to-r from-cyan-500 to-blue-600 text-white text-sm font-semibold rounded-xl w-full">
                     Hire a talent
                   </span>

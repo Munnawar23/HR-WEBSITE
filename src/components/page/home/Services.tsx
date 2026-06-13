@@ -13,6 +13,7 @@ import {
   Users,
   Megaphone,
   Search,
+  Shield,
 } from "lucide-react";
 
 const recruitmentTags = [
@@ -31,6 +32,15 @@ const marketingTags = [
   "Content Creation",
   "Lead Generation",
   "Brand Positioning",
+];
+
+const hrTags = [
+  "Performance Management",
+  "Compensation Strategy",
+  "Compliance",
+  "Organizational Design",
+  "Employee Engagement",
+  "HR Tech Integration",
 ];
 
 const fadeUp: Variants = {
@@ -81,7 +91,7 @@ export function Services() {
               What We Do
             </span>
             <h2 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-extrabold text-text-primary leading-[1.1] tracking-tight">
-              Two forces.<br />
+              Three forces.<br />
               <span className="text-primary">One mission</span> — to grow your business.
             </h2>
           </motion.div>
@@ -93,7 +103,7 @@ export function Services() {
             transition={{ duration: 0.65, delay: 0.15 }}
             className="text-base text-text-muted leading-relaxed max-w-sm lg:text-right lg:pb-2"
           >
-            We specialise in elite talent acquisition and high-impact marketing strategies — the two pillars that define competitive, scalable organisations.
+            We specialise in elite talent acquisition, high-impact marketing strategies, and comprehensive HR consulting — the pillars that define scalable organisations.
           </motion.p>
         </div>
 
@@ -206,7 +216,7 @@ export function Services() {
 
             {/* Tag cloud */}
             <div className="flex flex-wrap gap-2.5">
-              {recruitmentTags.map((tag) => (
+               {recruitmentTags.map((tag) => (
                 <span
                   key={tag}
                   className="px-3.5 py-1.5 rounded-full text-xs font-bold border bg-tag-bg border-border-soft text-primary transition-all duration-200 hover:scale-105 cursor-default"
@@ -233,7 +243,7 @@ export function Services() {
               ))}
             </div>
 
-            <Link href="#hire">
+            <Link href="/apply">
               <span
                 className="group/cta inline-flex items-center gap-3 px-7 py-3.5 rounded-xl text-sm font-bold text-white transition-all duration-200 hover:scale-[1.03] active:scale-[0.98] shadow-lg"
                 style={{ background: "linear-gradient(135deg, #4f46e5, #7c3aed)", boxShadow: "0 8px 24px rgba(79,70,229,0.28)" }}
@@ -305,7 +315,6 @@ export function Services() {
               ))}
             </div>
 
-
             <Link href="#contact">
               <span
                 className="group/cta inline-flex items-center gap-3 px-7 py-3.5 rounded-xl text-sm font-bold text-white transition-all duration-200 hover:scale-[1.03] active:scale-[0.98] shadow-lg"
@@ -374,6 +383,132 @@ export function Services() {
         </div>
       </div>
 
+      {/* ── THIN SEPARATOR ── */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="h-px bg-border" />
+      </div>
+
+      {/* ── PILLAR 03: HR CONSULTING ── */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+
+          {/* Left: Image block */}
+          <motion.div
+            variants={fadeLeft}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            className="relative"
+          >
+            {/* Large number watermark */}
+            <div
+              className="absolute -top-8 -left-4 text-[9rem] font-black leading-none select-none pointer-events-none text-amber-500/10"
+            >
+              03
+            </div>
+
+            {/* Main image */}
+            <div className="relative rounded-3xl overflow-hidden aspect-3/2">
+              <Image
+                src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=900&q=85&auto=format&fit=crop"
+                alt="HR Consulting session"
+                fill
+                className="object-cover transition-transform duration-700 hover:scale-105"
+              />
+              {/* Dark gradient overlay */}
+              <div
+                className="absolute inset-0"
+                style={{ background: "linear-gradient(160deg, transparent 40%, #78350f88 100%)" }}
+              />
+              {/* Overlay badge */}
+              <div className="absolute bottom-6 left-6 right-6">
+                <div
+                  className="inline-flex items-center gap-2.5 bg-white/95 dark:bg-dark-2/95 backdrop-blur-md px-4 py-2.5 rounded-2xl shadow-xl border border-white/20 dark:border-white/10"
+                >
+                  <Shield className="w-5 h-5 text-amber-600 shrink-0" />
+                  <div>
+                    <div className="text-xs font-extrabold text-text-primary">100% Compliance Maintained</div>
+                    <div className="text-[10px] text-text-subtle">across all managed organizations</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Floating stat — top right */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8, y: 10 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.6, duration: 0.5 }}
+              className="absolute -right-6 top-16 bg-white dark:bg-dark-2 rounded-2xl px-5 py-4 shadow-2xl border border-border z-10"
+            >
+              <div className="text-3xl font-black text-amber-500 leading-none">30%</div>
+              <div className="text-xs font-semibold text-text-muted mt-1">Boost in Retention</div>
+            </motion.div>
+          </motion.div>
+
+          {/* Right: Content */}
+          <motion.div
+            variants={fadeRight}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            className="flex flex-col gap-5"
+          >
+            {/* Number label */}
+            <div className="flex items-center gap-4">
+              <span
+                className="text-xs font-black tracking-[0.2em] uppercase text-amber-600 dark:text-amber-500"
+              >
+                Pillar 03
+              </span>
+              <div className="h-px flex-1 bg-border" />
+            </div>
+
+            <h3 className="text-3xl sm:text-4xl lg:text-[2.6rem] font-extrabold text-text-primary leading-[1.15] tracking-tight">
+              HR{" "}
+              <span className="relative">
+                Consulting
+                <svg
+                  className="absolute -bottom-1.5 left-0 w-full"
+                  viewBox="0 0 240 10"
+                  fill="none"
+                  preserveAspectRatio="none"
+                >
+                  <path d="M2 7C50 3 130 2 238 5" stroke="#f59e0b" strokeWidth="5" strokeLinecap="round" opacity="0.35" />
+                </svg>
+              </span>
+            </h3>
+
+            <p className="text-base text-text-muted leading-relaxed">
+              We provide comprehensive HR consulting services to optimize your workforce, align talent with business goals, and foster a thriving company culture that retains top performers.
+            </p>
+
+            {/* Tag cloud */}
+            <div className="flex flex-wrap gap-2.5">
+              {hrTags.map((tag) => (
+                <span
+                  key={tag}
+                  className="px-3.5 py-1.5 rounded-full text-xs font-bold border bg-amber-50 dark:bg-amber-950/20 text-amber-600 dark:text-amber-400 border-amber-100 dark:border-amber-900/30 transition-all duration-200 hover:scale-105 cursor-default"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            <Link href="/hire">
+              <span
+                className="group/cta inline-flex items-center gap-3 px-7 py-3.5 rounded-xl text-sm font-bold text-white transition-all duration-200 hover:scale-[1.03] active:scale-[0.98] shadow-lg mt-4"
+                style={{ background: "linear-gradient(135deg, #f59e0b, #d97706)", boxShadow: "0 8px 24px rgba(245,158,11,0.28)" }}
+              >
+                Optimize Your Team
+                <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover/cta:translate-x-1" />
+              </span>
+            </Link>
+          </motion.div>
+
+        </div>
+      </div>
 
     </section>
   );

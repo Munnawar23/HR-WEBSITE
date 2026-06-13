@@ -87,7 +87,7 @@ export function Hero() {
               variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.55, delay: 0.1 } } }}
               className="flex flex-wrap gap-4"
             >
-              <Link href="#hire">
+              <Link href="/apply">
                 <span
                   className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-white text-sm font-bold shadow-lg transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]"
                   style={{
@@ -99,10 +99,10 @@ export function Hero() {
                   <ArrowRight className="w-4 h-4" />
                 </span>
               </Link>
-              <Link href="#contact">
+              <Link href="/hire">
                 <span className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-bold border-2 transition-all duration-200 hover:bg-indigo-50 dark:hover:bg-indigo-950/40 text-primary border-primary"
                 >
-                  Contact Us
+                  Hire a Talent
                 </span>
               </Link>
             </motion.div>
