@@ -3,6 +3,7 @@
 import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { InputField, getInputClass } from "./InputField";
+import { submitApplication } from "@/app/actions";
 import {
   User,
   Mail,
@@ -14,6 +15,7 @@ import {
   ChevronDown,
   FileText,
   ArrowRight,
+  MessageSquare,
 } from "lucide-react";
 import {
   validateName,
@@ -33,6 +35,7 @@ interface FormData {
   phone: string;
   address: string;
   role: string;
+  message: string;
   resume: File | null;
 }
 
@@ -42,20 +45,20 @@ interface FormErrors {
   phone?: string;
   address?: string;
   role?: string;
+  message?: string;
   resume?: string;
 }
 
 const ROLES = [
-  "HR Business Partner",
-  "Talent Acquisition Specialist",
-  "Recruitment Consultant",
-  "HR Generalist",
-  "Learning & Development Manager",
-  "Compensation & Benefits Analyst",
-  "HR Operations Executive",
-  "Employer Branding Specialist",
-  "Digital Marketing Executive",
-  "Business Development Manager",
+  "HR",
+  "IT",
+  "Recruitment",
+  "Sales",
+  "Marketing",
+  "Finance",
+  "Customer Support",
+  "Operations",
+  "Design",
   "Other",
 ];
 
@@ -71,12 +74,7 @@ function validate(data: FormData): FormErrors {
   const phoneError = validatePhone(data.phone);
   if (phoneError) errors.phone = phoneError;
 
-  const addressError = validateMinLength(
-    data.address,
-    10,
-    "Address is required.",
-    "Please enter a more complete address."
-  );
+  const addressError = validateRequired(data.address, "Address is required.");
   if (addressError) errors.address = addressError;
 
   const roleError = validateRequired(data.role, "Please select a role.");
@@ -96,6 +94,7 @@ export function Form({ onSuccess }: FormProps) {
     phone: "",
     address: "",
     role: "",
+    message: "",
     resume: null,
   });
   const [errors, setErrors] = useState<FormErrors>({});
@@ -147,12 +146,33 @@ export function Form({ onSuccess }: FormProps) {
     if (Object.keys(errs).length > 0) return;
 
     setSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 1800));
-    setSubmitting(false);
-    onSuccess();
-    setForm({ name: "", email: "", phone: "", address: "", role: "", resume: null });
-    setTouched({});
-    setErrors({});
+    try {
+      const data = new FormData();
+      data.append("name", form.name);
+      data.append("email", form.email);
+      data.append("phone", form.phone);
+      data.append("address", form.address);
+      data.append("role", form.role);
+      data.append("message", form.message);
+      if (form.resume) {
+        data.append("resume", form.resume);
+      }
+
+      const res = await submitApplication(data);
+      if (res.success) {
+        onSuccess();
+        setForm({ name: "", email: "", phone: "", address: "", role: "", message: "", resume: null });
+        setTouched({});
+        setErrors({});
+      } else {
+        alert(res.error || "Submission failed. Please try again.");
+      }
+    } catch (err: any) {
+      console.error(err);
+      alert("An unexpected error occurred. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -260,6 +280,19 @@ export function Form({ onSuccess }: FormProps) {
               onChange={(e) => set("address", e.target.value)}
               onBlur={() => blur("address")}
               className={getInputClass(errors.address) + " resize-none"}
+            />
+          </InputField>
+
+          {/* Message */}
+          <InputField id="message" label="Message" icon={<MessageSquare className="w-4 h-4" />} error={errors.message}>
+            <textarea
+              id="message"
+              rows={3}
+              placeholder="Enter a message (Optional)"
+              value={form.message}
+              onChange={(e) => set("message", e.target.value)}
+              onBlur={() => blur("message")}
+              className={getInputClass(errors.message) + " resize-none"}
             />
           </InputField>
 

@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { InputField, getInputClass } from "@/components/page/apply/InputField";
+import { submitHiringRequest } from "@/app/actions";
 import {
   Building2,
   User,
@@ -33,7 +34,6 @@ interface FormData {
   contactPerson: string;
   email: string;
   phone: string;
-  industry: string;
   positions: string;
   roles: string;
   requirements: string;
@@ -45,26 +45,12 @@ interface FormErrors {
   contactPerson?: string;
   email?: string;
   phone?: string;
-  industry?: string;
   positions?: string;
   roles?: string;
   requirements?: string;
 }
 
-const INDUSTRIES = [
-  "Information Technology",
-  "Healthcare & Pharma",
-  "Finance & Banking",
-  "Manufacturing",
-  "E-Commerce & Retail",
-  "Education & EdTech",
-  "Real Estate",
-  "Logistics & Supply Chain",
-  "Media & Entertainment",
-  "Consulting",
-  "Hospitality & Travel",
-  "Other",
-];
+
 
 function validate(data: FormData): FormErrors {
   const errors: FormErrors = {};
@@ -86,15 +72,16 @@ function validate(data: FormData): FormErrors {
   const phoneError = validatePhone(data.phone);
   if (phoneError) errors.phone = phoneError;
 
-  const industryError = validateRequired(data.industry, "Please select your industry.");
-  if (industryError) errors.industry = industryError;
-
   const positionsError = validatePositiveNumber(
     data.positions,
     "Number of positions is required.",
     "Enter a valid number (minimum 1)."
   );
-  if (positionsError) errors.positions = positionsError;
+  if (positionsError) {
+    errors.positions = positionsError;
+  } else if (parseInt(data.positions, 10) > 50) {
+    errors.positions = "Maximum number of positions is 50.";
+  }
 
   const rolesError = validateRequired(data.roles, "Please specify the role(s) you are hiring for.");
   if (rolesError) errors.roles = rolesError;
@@ -116,7 +103,6 @@ export function Form({ onSuccess }: FormProps) {
     contactPerson: "",
     email: "",
     phone: "",
-    industry: "",
     positions: "",
     roles: "",
     requirements: "",
@@ -150,12 +136,36 @@ export function Form({ onSuccess }: FormProps) {
     if (Object.keys(errs).length > 0) return;
 
     setSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 1800));
-    setSubmitting(false);
-    onSuccess();
-    setForm({ companyName: "", contactPerson: "", email: "", phone: "", industry: "", positions: "", roles: "", requirements: "", budget: "" });
-    setTouched({});
-    setErrors({});
+    try {
+      const data = new FormData();
+      Object.entries(form).forEach(([key, val]) => {
+        data.append(key, val);
+      });
+
+      const res = await submitHiringRequest(data);
+      if (res.success) {
+        onSuccess();
+        setForm({
+          companyName: "",
+          contactPerson: "",
+          email: "",
+          phone: "",
+          positions: "",
+          roles: "",
+          requirements: "",
+          budget: "",
+        });
+        setTouched({});
+        setErrors({});
+      } else {
+        alert(res.error || "Submission failed. Please try again.");
+      }
+    } catch (err: any) {
+      console.error(err);
+      alert("An unexpected error occurred. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -205,7 +215,7 @@ export function Form({ onSuccess }: FormProps) {
 
           {/* Row 2: Email + Phone */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
-            <InputField id="email" label="Business Email" icon={<Mail className="w-4 h-4 sm:w-4.5 sm:h-4.5" />} error={errors.email}>
+            <InputField id="email" label="Email" icon={<Mail className="w-4 h-4 sm:w-4.5 sm:h-4.5" />} error={errors.email}>
               <input
                 id="email"
                 type="email"
@@ -245,41 +255,21 @@ export function Form({ onSuccess }: FormProps) {
             </InputField>
           </div>
 
-          {/* Row 3: Industry + Positions */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
-            <InputField id="industry" label="Industry / Domain" icon={<Briefcase className="w-4 h-4 sm:w-4.5 sm:h-4.5" />} error={errors.industry}>
-              <div className="relative">
-                <select
-                  id="industry"
-                  value={form.industry}
-                  onChange={(e) => set("industry", e.target.value)}
-                  onBlur={() => blur("industry")}
-                  className={getInputClass(errors.industry) + " appearance-none pr-10 cursor-pointer w-full text-ellipsis overflow-hidden"}
-                >
-                  <option value="">Select industry…</option>
-                  {INDUSTRIES.map((ind) => (
-                    <option key={ind} value={ind}>{ind}</option>
-                  ))}
-                </select>
-                <ChevronDown className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted pointer-events-none" />
-              </div>
-            </InputField>
-
-            <InputField id="positions" label="No. of Positions" icon={<Users className="w-4 h-4 sm:w-4.5 sm:h-4.5" />} error={errors.positions}>
-              <input
-                id="positions"
-                type="text"
-                placeholder="e.g. 5"
-                value={form.positions}
-                onChange={(e) => {
-                  const val = e.target.value.replace(/\D/g, "");
-                  set("positions", val);
-                }}
-                onBlur={() => blur("positions")}
-                className={getInputClass(errors.positions)}
-              />
-            </InputField>
-          </div>
+          {/* Row 3: Positions */}
+          <InputField id="positions" label="No. of Positions" icon={<Users className="w-4 h-4 sm:w-4.5 sm:h-4.5" />} error={errors.positions}>
+            <input
+              id="positions"
+              type="text"
+              placeholder="e.g. 5"
+              value={form.positions}
+              onChange={(e) => {
+                const val = e.target.value.replace(/\D/g, "");
+                set("positions", val);
+              }}
+              onBlur={() => blur("positions")}
+              className={getInputClass(errors.positions)}
+            />
+          </InputField>
 
           {/* Role(s) Hiring For */}
           <InputField id="roles" label="Role(s) You Are Hiring For" icon={<FileText className="w-4 h-4 sm:w-4.5 sm:h-4.5" />} error={errors.roles}>
